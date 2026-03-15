@@ -3,6 +3,8 @@
 html{scroll-behavior:smooth}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:#1a1a2e;background:#fafafa;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 img,svg,video{max-width:100%;height:auto}
+.hero,.sec,.footer{overflow-x:hidden}
+.wf-text,.info-box{max-width:100%;overflow-wrap:break-word;word-break:break-word}
 :root{--mint:#3BCEAC;--mint-light:#CCFBF1;--mint-dark:#0D9488;--dark:#111827;--gray-50:#f9fafb;--gray-100:#f3f4f6;--gray-200:#e5e7eb;--gray-300:#d1d5db;--gray-400:#9ca3af;--gray-500:#6b7280;--gray-600:#4b5563;--gray-700:#374151;--gray-800:#1f2937;--orange:#f97316;--red:#ef4444;--green:#22c55e}
 
 /* ===== LAYOUT ===== */
@@ -188,7 +190,7 @@ img,svg,video{max-width:100%;height:auto}
 /* ===== WORKFLOW LAYOUT ===== */
 .wf-block{display:flex;gap:48px;align-items:center;margin-bottom:72px}
 .wf-block.rev{flex-direction:row-reverse}
-.wf-text{flex:1}
+.wf-text{flex:1;min-width:0}
 .wf-text h3{font-size:1.4rem;font-weight:800;margin-bottom:16px;letter-spacing:-.02em}
 .wf-phone{flex-shrink:0}
 .wf-steps{display:flex;flex-direction:column;gap:8px}
