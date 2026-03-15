@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>YogaApp — Руководство по платформе</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="YogaApp — платформа для управления йога-студией. Расписание, голосования, оплата внутри Telegram.">
+<meta property="og:title" content="YogaApp — Руководство по платформе">
+<meta property="og:description" content="Платформа для управления йога-студией. Расписание, голосования, оплата — внутри Telegram.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yg-guide.vercel.app">
+<meta property="og:image" content="https://yg-guide.vercel.app/og-image.svg">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#111827">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -100,10 +109,13 @@
         <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 1 — Основное</strong></div>
         <div class="wf-step" style="padding-left:16px;font-size:.84rem">Название и описание группы. Тип: «Регулярные» (еженедельные) или «Интенсив» (разовое). Минимум учеников для старта.</div>
         <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 2 — Цена и расписание</strong></div>
-        <div class="wf-step" style="padding-left:16px;font-size:.84rem">Ценообразование:<br>
-          &bull; <strong>Фиксированная</strong> — списывается 1 занятие с баланса<br>
-          &bull; <strong>Динамическая</strong> — цена назначается после голосования<br><br>
-          Расписание: выберите дни недели и время.</div>
+        <div class="wf-step" style="padding-left:16px;font-size:.84rem">
+          <div>Ценообразование:</div>
+          <div style="padding-left:12px;margin:4px 0">&#x2022; <strong>Фиксированная</strong> — списывается 1 занятие с баланса</div>
+          <div style="padding-left:12px;margin:4px 0">&#x2022; <strong>Динамическая</strong> — цена назначается после голосования</div>
+          <div style="padding-left:12px;margin:4px 0">&#x2022; <strong>Наличные</strong> — ученик платит тренеру напрямую</div>
+          <div style="margin-top:6px">Расписание: выберите дни недели и время.</div>
+        </div>
         <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 3 — Telegram-чат</strong></div>
         <div class="wf-step" style="padding-left:16px;font-size:.84rem">Привяжите чат: создайте группу в Telegram → добавьте @Yom23_bot → сделайте админом → вставьте ссылку. Проверьте итог и нажмите «Создать».</div>
       </div>
@@ -264,9 +276,11 @@
         <div class="wf-step" style="padding-left:16px;font-size:.84rem">Выберите дни из расписания группы. Для дневного — 1 день, для недельного — несколько.</div>
         <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 3 — Режим оплаты</strong></div>
         <div class="wf-step" style="padding-left:16px;font-size:.84rem">
-          &bull; <strong>С баланса</strong> — списание 1 занятия при голосовании<br>
-          &bull; <strong>Картой</strong> — цена после голосования, оплата через T-Bank<br>
-          &bull; <strong>Бесплатно</strong> — простой опрос</div>
+          <div style="padding-left:12px;margin:4px 0">&#x2022; <strong>С баланса</strong> — списание занятия при голосовании</div>
+          <div style="padding-left:12px;margin:4px 0">&#x2022; <strong>Картой</strong> — оплата через T-Bank после голосования</div>
+          <div style="padding-left:12px;margin:4px 0">&#x2022; <strong>Наличными</strong> — оплата тренеру напрямую</div>
+          <div style="padding-left:12px;margin:4px 0">&#x2022; <strong>Бесплатно</strong> — простой опрос</div>
+        </div>
         <div class="wf-step"><span class="wf-dot"></span>Результат: опрос автоматически публикуется в Telegram-чат</div>
       </div>
     </div>
@@ -315,6 +329,7 @@
               <div class="m-label">Режим оплаты</div>
               <div class="m-opt-card on"><div class="m-radio on"></div><div><div class="opt-t">Списание с баланса</div><div class="opt-d">1 занятие при голосовании</div></div></div>
               <div class="m-opt-card"><div class="m-radio"></div><div><div class="opt-t">Оплата картой</div><div class="opt-d">Цена после голосования</div></div></div>
+              <div class="m-opt-card"><div class="m-radio"></div><div><div class="opt-t">Наличными</div><div class="opt-d">Оплата тренеру напрямую</div></div></div>
               <div class="m-opt-card"><div class="m-radio"></div><div><div class="opt-t">Без оплаты</div><div class="opt-d">Свободный опрос</div></div></div>
               <div class="m-info-box" style="margin-top:8px">При голосовании будет списано 1 занятие с баланса</div>
             </div>
@@ -333,7 +348,7 @@
       <div class="wf-steps">
         <div class="wf-step"><span class="wf-dot"></span><strong>Список:</strong> вкладки «Активные» и «История». Кнопка создания открывает выбор группы</div>
         <div class="wf-step"><span class="wf-dot"></span><strong>Карточка:</strong> показывает название, дедлайн, прогресс кворума, количество голосов по каждому варианту с мини-аватарами голосовавших</div>
-        <div class="wf-step"><span class="wf-dot"></span><strong>📨 Отправить в чат:</strong> публикует голосование как нативный Telegram Poll. Для FIXED-цены — сразу кнопки оплаты под опросом</div>
+        <div class="wf-step"><span class="wf-dot"></span><strong>📨 Отправить в чат:</strong> публикует голосование как нативный Telegram Poll. Под опросом — кнопки оплаты: картой, с баланса или наличными</div>
         <div class="wf-step"><span class="wf-dot"></span><strong>✏️ Редактировать:</strong> диалог для изменения названия, дедлайна и минимума участников</div>
         <div class="wf-step"><span class="wf-dot"></span><strong>✅ Финализировать:</strong> доступно только при набранном кворуме. Для динамической цены — тренер назначает стоимость</div>
         <div class="wf-step"><span class="wf-dot"></span><strong>❌ Отменить:</strong> предупреждение «Баланс будет возвращён участникам». Все списанные занятия вернутся</div>
@@ -597,8 +612,9 @@
                 </div>
                 <div style="padding:4px 10px"><div class="m-confirm success" style="display:flex;align-items:center;gap:6px;justify-content:center">✓ Вы проголосовали</div></div>
                 <div style="padding:4px 10px 10px;display:flex;gap:6px">
-                  <div style="flex:1;text-align:center;padding:8px;border-radius:8px;border:1px solid #e5e7eb;font-size:.68rem;font-weight:600;color:#374151">💳 Оплатить</div>
-                  <div style="flex:1;text-align:center;padding:8px;border-radius:8px;background:#3BCEAC;color:#fff;font-size:.68rem;font-weight:600">📝 С баланса</div>
+                  <div style="flex:1;text-align:center;padding:7px;border-radius:8px;border:1px solid #e5e7eb;font-size:.62rem;font-weight:600;color:#374151">💳 Картой</div>
+                  <div style="flex:1;text-align:center;padding:7px;border-radius:8px;background:#3BCEAC;color:#fff;font-size:.62rem;font-weight:600">📝 Баланс</div>
+                  <div style="flex:1;text-align:center;padding:7px;border-radius:8px;border:1px solid #e5e7eb;font-size:.62rem;font-weight:600;color:#374151">💵 Наличные</div>
                 </div>
               </div>
             </div>
@@ -616,7 +632,7 @@
       <div class="wf-steps">
         <div class="wf-step"><span class="wf-dot mint"></span>Страница «Купить занятия» — большой счётчик с кнопками +/- и быстрый выбор: 1, 4, 8, 12</div>
         <div class="wf-step"><span class="wf-dot mint"></span>Цена: <strong>700 ₽ за занятие</strong>, итого рассчитывается автоматически</div>
-        <div class="wf-step"><span class="wf-dot mint"></span>Кнопка «Оплатить» → создаёт платёж в T-Bank → перенаправляет на страницу оплаты</div>
+        <div class="wf-step"><span class="wf-dot mint"></span>Способы оплаты: картой через T-Bank, списание с баланса или наличными тренеру</div>
         <div class="wf-step"><span class="wf-dot mint"></span>После успешной оплаты баланс пополняется автоматически через webhook</div>
         <div class="wf-step"><span class="wf-dot mint"></span>Занятия <strong>не сгорают</strong>. Можно заморозить на 2 недели</div>
       </div>
@@ -635,7 +651,7 @@
               <div style="border-top:1px solid #e5e7eb;padding-top:10px;margin-top:4px">
                 <div class="m-price">700 ₽ × 8 = <strong>5 600 ₽</strong></div>
               </div>
-              <div class="m-pinfo" style="margin-top:8px">✅ Занятия не сгорают<br>❄️ Можно заморозить на 2 недели<br>🔒 Безопасная оплата через T-Bank</div>
+              <div class="m-pinfo" style="margin-top:8px">✅ Занятия не сгорают<br>❄️ Можно заморозить на 2 недели<br>🔒 Оплата: T-Bank, баланс или наличные</div>
             </div>
             <div class="m-btn-bottom">Оплатить 5 600 ₽</div>
           </div>

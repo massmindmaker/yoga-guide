@@ -46,12 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
     carousels.push(c);
   });
 
-  // Start carousels when visible
+  // Start carousels when visible; reset to screen 0 when out of view
   const carouselObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const c = carousels.find(x => x.el === entry.target);
       if (!c) return;
-      if (entry.isIntersecting) c.play(); else c.pause();
+      if (entry.isIntersecting) c.play();
+      else { c.pause(); c.goto(0); }
     });
   }, { threshold: 0.3 });
   document.querySelectorAll('.phone-carousel').forEach(el => carouselObserver.observe(el));
@@ -72,6 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.anim-on-scroll').forEach(el => scrollObserver.observe(el));
+
+  // Stagger step-card animations
+  document.querySelectorAll('.steps-grid .step-card').forEach((el, i) => {
+    el.classList.add('anim-delay-' + Math.min(i + 1, 4));
+  });
 
   // Workflow blocks
   document.querySelectorAll('.wf-block').forEach(el => {
@@ -132,4 +138,34 @@ document.addEventListener('DOMContentLoaded', () => {
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+
+  // ===== Sticky TOC =====
+  const tocEl = document.querySelector('.toc');
+  if (tocEl) {
+    const tocLinks = tocEl.querySelectorAll('a');
+    const sections = [];
+    tocLinks.forEach(link => {
+      const id = link.getAttribute('href')?.replace('#', '');
+      if (id) {
+        const el = document.getElementById(id);
+        if (el) sections.push({ id, el, link });
+      }
+    });
+
+    // Show/hide TOC based on scroll position
+    const heroHeight = document.querySelector('.hero')?.offsetHeight || 600;
+    window.addEventListener('scroll', () => {
+      tocEl.classList.toggle('visible', window.scrollY > heroHeight * 0.6);
+      
+      // Update active section
+      let current = '';
+      sections.forEach(({ id, el }) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 300) current = id;
+      });
+      tocLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }, { passive: true });
+  }
 });
