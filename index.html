@@ -23,7 +23,7 @@
     <a href="#student" class="btn btn-outline">Я ученик</a>
   </div>
   <div style="display:flex;justify-content:center">
-    <div class="phone-frame lg">
+    <div class="phone-frame">
       <div class="phone-notch"></div>
       <div class="phone-inner phone-carousel" data-delay="3500">
         <!-- Screen 1: Student main -->
@@ -95,16 +95,17 @@
   <div class="wf-block">
     <div class="wf-text">
       <h3>1. Создание группы</h3>
+      <p style="font-size:.9rem;color:#6b7280;margin-bottom:14px">Визард из 3 шагов. Откройте <strong>Группы → Создать</strong>.</p>
       <div class="wf-steps">
-        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 1:</strong> Введите название, описание. Выберите тип — <em>Регулярные</em> (еженедельные) или <em>Интенсив</em> (разовое событие). Установите минимум учеников.</div>
-        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 2:</strong> Настройте ценообразование:
-          <ul>
-            <li><strong>Фиксированная</strong> — при голосовании/записи с баланса ученика списывается N занятий (по умолчанию 1)</li>
-            <li><strong>Динамическая</strong> — тренер назначит цену после голосования</li>
-          </ul>
-          Добавьте расписание: выберите дни недели и время. Для интенсива — даты начала/окончания и цену в рублях.
-        </div>
-        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 3:</strong> Привяжите Telegram-чат. Инструкция: создать группу в Telegram → добавить @Yom23_bot → сделать админом → вставить ссылку. Проверьте итоговую информацию и нажмите «Создать».</div>
+        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 1 — Основное</strong></div>
+        <div class="wf-step" style="padding-left:16px;font-size:.84rem">Название и описание группы. Тип: «Регулярные» (еженедельные) или «Интенсив» (разовое). Минимум учеников для старта.</div>
+        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 2 — Цена и расписание</strong></div>
+        <div class="wf-step" style="padding-left:16px;font-size:.84rem">Ценообразование:<br>
+          &bull; <strong>Фиксированная</strong> — списывается 1 занятие с баланса<br>
+          &bull; <strong>Динамическая</strong> — цена назначается после голосования<br><br>
+          Расписание: выберите дни недели и время.</div>
+        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 3 — Telegram-чат</strong></div>
+        <div class="wf-step" style="padding-left:16px;font-size:.84rem">Привяжите чат: создайте группу в Telegram → добавьте @Yom23_bot → сделайте админом → вставьте ссылку. Проверьте итог и нажмите «Создать».</div>
       </div>
     </div>
     <div class="wf-phone">
@@ -254,18 +255,19 @@
   <div class="wf-block">
     <div class="wf-text">
       <h3>3. Создание голосования</h3>
+      <p style="font-size:.9rem;color:#6b7280;margin-bottom:14px">Визард из 3 шагов. Откройте группу → <strong>Создать голосование</strong>.</p>
       <div class="wf-steps">
-        <div class="wf-step"><span class="wf-dot"></span><strong>Условие:</strong> к группе должен быть привязан Telegram-чат. Если чата нет — экран-заглушка с кнопкой «Привязать чат»</div>
-        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 1:</strong> Название, описание, период (<em>На день</em> — один вариант, <em>На неделю</em> — множественный выбор), дедлайн голосования</div>
-        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 2:</strong> Выбор дней из расписания группы. Для дневного периода — один день. Для недельного — несколько</div>
-        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 3 — Режим оплаты:</strong>
-          <ul>
-            <li><strong>Списание с баланса</strong> — при голосовании списывается 1 занятие автоматически</li>
-            <li><strong>Оплата картой</strong> — тренер назначает цену после голосования, ученик платит через T-Bank</li>
-            <li><strong>Без оплаты</strong> — простой опрос</li>
-          </ul>
-        </div>
-        <div class="wf-step"><span class="wf-dot"></span>После создания голосование <strong>автоматически отправляется</strong> в Telegram-чат как нативный Poll</div>
+        <div class="wf-step"><span class="wf-dot"></span><strong>Требование:</strong> к группе привязан Telegram-чат</div>
+        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 1 — Настройки</strong></div>
+        <div class="wf-step" style="padding-left:16px;font-size:.84rem">Название голосования, период («На день» или «На неделю»), дедлайн.</div>
+        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 2 — Дни</strong></div>
+        <div class="wf-step" style="padding-left:16px;font-size:.84rem">Выберите дни из расписания группы. Для дневного — 1 день, для недельного — несколько.</div>
+        <div class="wf-step"><span class="wf-dot"></span><strong>Шаг 3 — Режим оплаты</strong></div>
+        <div class="wf-step" style="padding-left:16px;font-size:.84rem">
+          &bull; <strong>С баланса</strong> — списание 1 занятия при голосовании<br>
+          &bull; <strong>Картой</strong> — цена после голосования, оплата через T-Bank<br>
+          &bull; <strong>Бесплатно</strong> — простой опрос</div>
+        <div class="wf-step"><span class="wf-dot"></span>Результат: опрос автоматически публикуется в Telegram-чат</div>
       </div>
     </div>
     <div class="wf-phone">
