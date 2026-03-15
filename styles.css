@@ -38,7 +38,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:#1a1a
 .phone-carousel{position:relative;height:100%}
 .screen{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity .5s ease;pointer-events:none;overflow-y:auto;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding-bottom:52px}
 .screen::-webkit-scrollbar{display:none}
-.screen:first-child{position:relative;opacity:1;pointer-events:auto}
+.screen:first-child{opacity:1;pointer-events:auto}
 .carousel-dots{display:flex;justify-content:center;gap:5px;padding:6px 0;position:absolute;bottom:-30px;left:0;right:0;z-index:5}
 .dot{width:6px;height:6px;border-radius:50%;background:var(--gray-300);cursor:pointer;transition:all .3s}
 .sec-dark .dot{background:var(--gray-500)}
