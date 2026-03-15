@@ -1,108 +1,135 @@
-// ===== Scroll-triggered animations =====
+// ===== Phone Screen Carousel =====
+class PhoneCarousel {
+  constructor(el) {
+    this.el = el;
+    this.screens = el.querySelectorAll('.screen');
+    this.dots = el.querySelectorAll('.dot');
+    this.current = 0;
+    this.total = this.screens.length;
+    this.interval = null;
+    this.delay = parseInt(el.dataset.delay || '3500');
+    if (this.total <= 1) return;
+    this.screens.forEach((s, i) => { s.style.opacity = i === 0 ? '1' : '0'; s.style.pointerEvents = i === 0 ? 'auto' : 'none'; });
+    this.updateDots();
+    el.addEventListener('mouseenter', () => this.pause());
+    el.addEventListener('mouseleave', () => this.play());
+  }
+  goto(n) {
+    this.screens[this.current].style.opacity = '0';
+    this.screens[this.current].style.pointerEvents = 'none';
+    this.current = n % this.total;
+    this.screens[this.current].style.opacity = '1';
+    this.screens[this.current].style.pointerEvents = 'auto';
+    this.updateDots();
+  }
+  next() { this.goto(this.current + 1); }
+  updateDots() {
+    this.dots.forEach((d, i) => {
+      d.classList.toggle('active', i === this.current);
+    });
+  }
+  play() {
+    if (this.total <= 1) return;
+    this.pause();
+    this.interval = setInterval(() => this.next(), this.delay);
+  }
+  pause() { clearInterval(this.interval); }
+}
+
+// ===== Init =====
 document.addEventListener('DOMContentLoaded', () => {
-  const observer = new IntersectionObserver((entries) => {
+
+  // Init all phone carousels
+  const carousels = [];
+  document.querySelectorAll('.phone-carousel').forEach(el => {
+    const c = new PhoneCarousel(el);
+    carousels.push(c);
+  });
+
+  // Start carousels when visible
+  const carouselObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      const c = carousels.find(x => x.el === entry.target);
+      if (!c) return;
+      if (entry.isIntersecting) c.play(); else c.pause();
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.phone-carousel').forEach(el => carouselObserver.observe(el));
 
-  document.querySelectorAll('.anim-on-scroll').forEach(el => observer.observe(el));
+  // Dot clicks
+  document.querySelectorAll('.dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const phone = dot.closest('.phone-carousel');
+      const c = carousels.find(x => x.el === phone);
+      if (c) { c.pause(); c.goto(parseInt(dot.dataset.i)); c.play(); }
+    });
+  });
 
-  // Animate workflow blocks on scroll
-  const wfObserver = new IntersectionObserver((entries) => {
+  // ===== Scroll animations =====
+  const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.anim-on-scroll').forEach(el => scrollObserver.observe(el));
 
-  document.querySelectorAll('.workflow-block').forEach(el => {
+  // Workflow blocks
+  document.querySelectorAll('.wf-block').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(40px)';
-    el.style.transition = 'all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    wfObserver.observe(el);
+    el.style.transition = 'all .7s cubic-bezier(.25,.46,.45,.94)';
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }
+    }, { threshold: 0.08 });
+    obs.observe(el);
   });
 
-  // Animate phone frames on scroll
-  const phoneObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0) rotate(0deg)';
-      }
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll('.phone-frame.small').forEach(el => {
+  // Phone frames entrance
+  document.querySelectorAll('.phone-frame').forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(30px) rotate(2deg)';
-    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s';
-    phoneObserver.observe(el);
+    el.style.transform = 'translateY(30px) rotate(1deg)';
+    el.style.transition = 'all .8s cubic-bezier(.25,.46,.45,.94) .15s';
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { el.style.opacity = '1'; el.style.transform = 'translateY(0) rotate(0)'; }
+    }, { threshold: 0.15 });
+    obs.observe(el);
   });
-
-  // Animate voting bar fills on scroll
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const bars = entry.target.querySelectorAll('.mock-vc-bar-fill');
-        bars.forEach(bar => {
-          const targetWidth = bar.classList.contains('full') ? '100%' : '60%';
-          bar.style.width = '0%';
-          setTimeout(() => { bar.style.width = targetWidth; }, 300);
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-
-  document.querySelectorAll('.mock-voting-card').forEach(el => barObserver.observe(el));
-
-  // Animate progress bars on scroll
-  const progressObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const bar = entry.target.querySelector('.mock-progress-bar');
-        if (bar) {
-          const w = bar.style.width;
-          bar.style.width = '0%';
-          setTimeout(() => { bar.style.width = w; }, 400);
-        }
-      }
-    });
-  }, { threshold: 0.3 });
-
-  document.querySelectorAll('.mock-progress').forEach(el => progressObserver.observe(el));
 
   // Counter animation
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.dataset.animated) {
-        entry.target.dataset.animated = 'true';
-        const target = parseInt(entry.target.textContent || '0');
-        let current = 0;
-        const step = Math.ceil(target / 20);
-        const interval = setInterval(() => {
-          current = Math.min(current + step, target);
-          entry.target.textContent = current.toString();
-          if (current >= target) clearInterval(interval);
-        }, 50);
+  document.querySelectorAll('.counter').forEach(el => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !el.dataset.done) {
+        el.dataset.done = '1';
+        const target = parseInt(el.textContent);
+        let cur = 0;
+        const step = Math.max(1, Math.ceil(target / 25));
+        const iv = setInterval(() => {
+          cur = Math.min(cur + step, target);
+          el.textContent = cur;
+          if (cur >= target) clearInterval(iv);
+        }, 40);
       }
-    });
-  }, { threshold: 0.5 });
+    }, { threshold: 0.5 });
+    obs.observe(el);
+  });
 
-  document.querySelectorAll('.counter-anim').forEach(el => counterObserver.observe(el));
+  // Progress bar fills
+  document.querySelectorAll('[data-fill]').forEach(el => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !el.dataset.done) {
+        el.dataset.done = '1';
+        setTimeout(() => { el.style.width = el.dataset.fill; }, 200);
+      }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+  });
 
-  // Smooth scroll for anchor links
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
+    a.addEventListener('click', e => {
       e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 });
