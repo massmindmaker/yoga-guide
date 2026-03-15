@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YogaApp — Руководство</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="container">
+    <div class="hero-badge">Telegram Mini App</div>
+    <h1 class="hero-title">Yoga<span class="accent">App</span></h1>
+    <p class="hero-sub">Платформа для управления йога-студией.<br>Расписание, голосования, оплата — всё внутри Telegram.</p>
+    <div class="hero-cta-row">
+      <a href="#trainer" class="btn btn-primary">Я тренер</a>
+      <a href="#student" class="btn btn-outline">Я ученик</a>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-showcase">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" id="heroScreen">
+          <div class="mock-header">
+            <div class="mock-avatar"></div>
+            <div>
+              <div class="mock-greeting">Привет, Анна!</div>
+              <div class="mock-sub">Баланс: 8 занятий</div>
+            </div>
+          </div>
+          <div class="mock-section-title">Ближайшие занятия</div>
+          <div class="mock-card anim-slide-up d1">
+            <div class="mock-card-date">
+              <span class="day-abbr">Пн</span>
+              <span class="day-num">17</span>
+            </div>
+            <div class="mock-card-info">
+              <div class="mock-card-name">Утренняя хатха</div>
+              <div class="mock-card-time">07:30 &middot; Студия</div>
+            </div>
+            <div class="mock-badge green">Записана</div>
+          </div>
+          <div class="mock-card anim-slide-up d2">
+            <div class="mock-card-date orange">
+              <span class="day-abbr">Ср</span>
+              <span class="day-num">19</span>
+            </div>
+            <div class="mock-card-info">
+              <div class="mock-card-name">ОФП + растяжка</div>
+              <div class="mock-card-time">19:00 &middot; Студия</div>
+            </div>
+            <div class="mock-badge gray">2 места</div>
+          </div>
+          <div class="mock-card anim-slide-up d3">
+            <div class="mock-card-date">
+              <span class="day-abbr">Пт</span>
+              <span class="day-num">21</span>
+            </div>
+            <div class="mock-card-info">
+              <div class="mock-card-name">Виньяса-флоу</div>
+              <div class="mock-card-time">10:00 &middot; Студия</div>
+            </div>
+            <div class="mock-badge green">Записана</div>
+          </div>
+          <div class="mock-nav">
+            <div class="mock-nav-item active"><div class="nav-icon">&#x2302;</div>Главная</div>
+            <div class="mock-nav-item"><div class="nav-icon">&#x1F4C5;</div>Расписание</div>
+            <div class="mock-nav-item"><div class="nav-icon">&#x1F4B3;</div>Платежи</div>
+            <div class="mock-nav-item"><div class="nav-icon">&#x1F4D6;</div>Журнал</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS (overview) ===== -->
+<section class="section section-dark" id="how">
+  <div class="container">
+    <h2 class="section-title">Как это работает</h2>
+    <div class="steps-grid">
+      <div class="step-card anim-on-scroll">
+        <div class="step-num">1</div>
+        <div class="step-icon">&#x1F4F1;</div>
+        <h3>Бот в Telegram</h3>
+        <p>Добавьте бота <strong>@Yom23_bot</strong> в свой групповой чат и сделайте его администратором.</p>
+      </div>
+      <div class="step-card anim-on-scroll">
+        <div class="step-num">2</div>
+        <div class="step-icon">&#x1F465;</div>
+        <h3>Группы и расписание</h3>
+        <p>Тренер создаёт группы, настраивает расписание и привязывает Telegram-чат.</p>
+      </div>
+      <div class="step-card anim-on-scroll">
+        <div class="step-num">3</div>
+        <div class="step-icon">&#x1F5F3;</div>
+        <h3>Голосования</h3>
+        <p>Тренер публикует голосование — ученики выбирают удобные дни прямо в чате.</p>
+      </div>
+      <div class="step-card anim-on-scroll">
+        <div class="step-num">4</div>
+        <div class="step-icon">&#x1F4B0;</div>
+        <h3>Оплата</h3>
+        <p>Ученики покупают пакеты занятий через T-Bank. Баланс списывается автоматически.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRAINER WORKFLOWS ===== -->
+<section class="section" id="trainer">
+  <div class="container">
+    <div class="role-badge trainer-color">Тренер</div>
+    <h2 class="section-title">Workflow тренера</h2>
+
+    <!-- WF 1: Create Group -->
+    <div class="workflow-block">
+      <div class="wf-text">
+        <h3>1. Создание группы</h3>
+        <div class="wf-steps">
+          <div class="wf-step"><span class="wf-dot"></span>Откройте <strong>Группы</strong> &rarr; <strong>Создать</strong></div>
+          <div class="wf-step"><span class="wf-dot"></span>Введите название и описание группы</div>
+          <div class="wf-step"><span class="wf-dot"></span>Выберите тип: <em>Регулярные</em> (еженедельные) или <em>Интенсив</em> (разовое событие)</div>
+          <div class="wf-step"><span class="wf-dot"></span>Настройте ценообразование:
+            <ul>
+              <li><strong>Фиксированная</strong> — при голосовании списывается N занятий с баланса ученика</li>
+              <li><strong>Динамическая</strong> — цена назначается после голосования</li>
+            </ul>
+          </div>
+          <div class="wf-step"><span class="wf-dot"></span>Добавьте расписание (дни недели + время)</div>
+          <div class="wf-step"><span class="wf-dot"></span>Привяжите Telegram-чат (добавьте @Yom23_bot админом)</div>
+        </div>
+      </div>
+      <div class="wf-phone">
+        <div class="phone-frame small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-topbar">Создание группы <span class="mock-step-ind">Шаг 1 из 3</span></div>
+            <div class="mock-progress"><div class="mock-progress-bar" style="width:33%"></div></div>
+            <div class="mock-form">
+              <div class="mock-label">Название группы</div>
+              <div class="mock-input typing-anim">Утренняя хатха</div>
+              <div class="mock-label">Тип группы</div>
+              <div class="mock-toggle-row">
+                <div class="mock-toggle active">Регулярные</div>
+                <div class="mock-toggle">Интенсив</div>
+              </div>
+              <div class="mock-label">Ценообразование</div>
+              <div class="mock-toggle-row">
+                <div class="mock-toggle active">Фиксированная</div>
+                <div class="mock-toggle">Динамическая</div>
+              </div>
+              <div class="mock-label">Списывать с баланса</div>
+              <div class="mock-input small-input">1 занятие</div>
+            </div>
+            <div class="mock-btn-bottom">Далее &rarr;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WF 2: Create Voting -->
+    <div class="workflow-block reverse">
+      <div class="wf-text">
+        <h3>2. Создание голосования</h3>
+        <div class="wf-steps">
+          <div class="wf-step"><span class="wf-dot"></span>Откройте группу &rarr; <strong>Создать голосование</strong></div>
+          <div class="wf-step"><span class="wf-dot"></span>Введите название, например &laquo;Расписание на неделю&raquo;</div>
+          <div class="wf-step"><span class="wf-dot"></span>Выберите период: <em>На день</em> (один вариант) или <em>На неделю</em> (несколько)</div>
+          <div class="wf-step"><span class="wf-dot"></span>Установите дедлайн голосования</div>
+          <div class="wf-step"><span class="wf-dot"></span>Выберите дни из расписания группы</div>
+          <div class="wf-step"><span class="wf-dot"></span>Выберите режим оплаты:
+            <ul>
+              <li><strong>Списание с баланса</strong> — автоматически при голосовании</li>
+              <li><strong>Оплата картой</strong> — после завершения голосования</li>
+              <li><strong>Без оплаты</strong> — свободный опрос</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="wf-phone">
+        <div class="phone-frame small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-topbar">Голосование <span class="mock-step-ind">Шаг 3 из 3</span></div>
+            <div class="mock-progress"><div class="mock-progress-bar" style="width:100%"></div></div>
+            <div class="mock-form">
+              <div class="mock-label">Режим оплаты</div>
+              <div class="mock-option-card active">
+                <div class="mock-radio checked"></div>
+                <div>
+                  <div class="opt-title">Списание с баланса</div>
+                  <div class="opt-desc">1 занятие при голосовании</div>
+                </div>
+              </div>
+              <div class="mock-option-card">
+                <div class="mock-radio"></div>
+                <div>
+                  <div class="opt-title">Оплата картой</div>
+                  <div class="opt-desc">Цена после голосования</div>
+                </div>
+              </div>
+              <div class="mock-option-card">
+                <div class="mock-radio"></div>
+                <div>
+                  <div class="opt-title">Без оплаты</div>
+                  <div class="opt-desc">Свободный опрос</div>
+                </div>
+              </div>
+            </div>
+            <div class="mock-btn-bottom accent-btn">Создать голосование</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WF 3: Publish + Manage -->
+    <div class="workflow-block">
+      <div class="wf-text">
+        <h3>3. Публикация и управление</h3>
+        <div class="wf-steps">
+          <div class="wf-step"><span class="wf-dot"></span>Голосование автоматически отправляется в Telegram-чат как <strong>нативный Poll</strong></div>
+          <div class="wf-step"><span class="wf-dot"></span>Ученики голосуют прямо в чате или в Mini App</div>
+          <div class="wf-step"><span class="wf-dot"></span>Вы видите прогресс кворума в реальном времени</div>
+          <div class="wf-step"><span class="wf-dot"></span>Когда кворум набран — нажмите <strong>Финализировать</strong></div>
+          <div class="wf-step"><span class="wf-dot"></span>Для динамической цены — назначьте стоимость каждому варианту</div>
+          <div class="wf-step"><span class="wf-dot"></span>Можно <strong>отменить</strong> голосование — баланс вернётся всем участникам</div>
+        </div>
+        <div class="info-box">
+          <strong>Действия тренера на карточке голосования:</strong><br>
+          &#x1F4E8; Опубликовать в чат &middot;
+          &#x270F; Редактировать &middot;
+          &#x2705; Финализировать &middot;
+          &#x274C; Отменить
+        </div>
+      </div>
+      <div class="wf-phone">
+        <div class="phone-frame small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-topbar">Голосования</div>
+            <div class="mock-voting-card">
+              <div class="mock-vc-header">
+                <div class="mock-vc-accent"></div>
+                <div>
+                  <div class="mock-vc-title">Расписание 17-23 марта</div>
+                  <div class="mock-vc-meta">До 16 марта &middot; 6/5 голосов</div>
+                </div>
+                <div class="mock-badge green small-badge">Кворум</div>
+              </div>
+              <div class="mock-vc-bar"><div class="mock-vc-bar-fill full"></div></div>
+              <div class="mock-vc-actions">
+                <div class="mock-vc-btn">&#x1F4E8;</div>
+                <div class="mock-vc-btn">&#x270F;</div>
+                <div class="mock-vc-btn green-btn">&#x2705;</div>
+                <div class="mock-vc-btn red-btn">&#x274C;</div>
+              </div>
+              <div class="mock-vc-options">
+                <div class="mock-vc-opt"><span>Пн 07:30</span> <span class="opt-voters">&#x1F464;&#x1F464;&#x1F464; 4</span></div>
+                <div class="mock-vc-opt"><span>Ср 19:00</span> <span class="opt-voters">&#x1F464;&#x1F464; 3</span></div>
+                <div class="mock-vc-opt"><span>Пт 10:00</span> <span class="opt-voters">&#x1F464;&#x1F464;&#x1F464;&#x1F464; 6</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WF 4: Dashboard & Journal -->
+    <div class="workflow-block reverse">
+      <div class="wf-text">
+        <h3>4. Дашборд и журнал</h3>
+        <div class="wf-steps">
+          <div class="wf-step"><span class="wf-dot"></span><strong>Панель:</strong> статистика (ученики, группы, занятия сегодня), список сегодняшних занятий с записавшимися</div>
+          <div class="wf-step"><span class="wf-dot"></span><strong>Журнал:</strong> вкладки &laquo;Проведённые&raquo; и &laquo;Предстоящие&raquo;. Для каждого занятия — список учеников с цветовыми метками посещения</div>
+          <div class="wf-step"><span class="wf-dot"></span><strong>Ученики:</strong> полный список с балансами, поиск по имени</div>
+          <div class="wf-step"><span class="wf-dot"></span><strong>Платежи:</strong> общая сумма, количество, история последних платежей</div>
+        </div>
+      </div>
+      <div class="wf-phone">
+        <div class="phone-frame small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-topbar">Панель тренера</div>
+            <div class="mock-stats-row">
+              <div class="mock-stat-card"><div class="stat-num counter-anim">12</div><div class="stat-label">Учеников</div></div>
+              <div class="mock-stat-card"><div class="stat-num counter-anim">3</div><div class="stat-label">Групп</div></div>
+              <div class="mock-stat-card"><div class="stat-num counter-anim">2</div><div class="stat-label">Сегодня</div></div>
+            </div>
+            <div class="mock-section-title" style="padding: 12px 16px 4px; font-size: 13px;">Занятия сегодня</div>
+            <div class="mock-class-item">
+              <div class="mock-class-time">07:30</div>
+              <div>
+                <div class="mock-class-name">Утренняя хатха</div>
+                <div class="mock-class-count">5 записей</div>
+              </div>
+            </div>
+            <div class="mock-class-item">
+              <div class="mock-class-time">19:00</div>
+              <div>
+                <div class="mock-class-name">ОФП + растяжка</div>
+                <div class="mock-class-count">8 записей</div>
+              </div>
+            </div>
+            <div class="mock-nav">
+              <div class="mock-nav-item active"><div class="nav-icon">&#x1F4CA;</div>Панель</div>
+              <div class="mock-nav-item"><div class="nav-icon">&#x1F465;</div>Группы</div>
+              <div class="mock-nav-item"><div class="nav-icon">&#x1F4D6;</div>Журнал</div>
+              <div class="mock-nav-item"><div class="nav-icon">&#x1F4B3;</div>Платежи</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STUDENT WORKFLOWS ===== -->
+<section class="section section-dark" id="student">
+  <div class="container">
+    <div class="role-badge student-color">Ученик</div>
+    <h2 class="section-title">Workflow ученика</h2>
+
+    <!-- WF S1: Main + Schedule -->
+    <div class="workflow-block">
+      <div class="wf-text">
+        <h3>1. Главная и расписание</h3>
+        <div class="wf-steps">
+          <div class="wf-step"><span class="wf-dot green"></span>На <strong>главной</strong> — приветствие, текущий баланс и ближайшие занятия</div>
+          <div class="wf-step"><span class="wf-dot green"></span>В <strong>расписании</strong> — календарная полоса по дням недели</div>
+          <div class="wf-step"><span class="wf-dot green"></span>Для каждого занятия видно: группу, время, тренера, свободные места</div>
+          <div class="wf-step"><span class="wf-dot green"></span>Нажмите <strong>Записаться</strong> — занятие списывается с баланса</div>
+          <div class="wf-step"><span class="wf-dot green"></span>Если баланс = 0, появятся кнопки <strong>Купить занятия</strong></div>
+          <div class="wf-step"><span class="wf-dot green"></span>Запись можно <strong>отменить</strong> — баланс вернётся</div>
+        </div>
+      </div>
+      <div class="wf-phone">
+        <div class="phone-frame small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-topbar">Расписание</div>
+            <div class="mock-calendar-strip">
+              <div class="cal-day">Пн<br><span>17</span></div>
+              <div class="cal-day active">Вт<br><span>18</span></div>
+              <div class="cal-day">Ср<br><span>19</span></div>
+              <div class="cal-day">Чт<br><span>20</span></div>
+              <div class="cal-day">Пт<br><span>21</span></div>
+              <div class="cal-day">Сб<br><span>22</span></div>
+              <div class="cal-day">Вс<br><span>23</span></div>
+            </div>
+            <div class="mock-class-card-s">
+              <div class="mock-time-box">10:00</div>
+              <div class="mock-class-detail">
+                <div class="mock-class-name">Виньяса-флоу</div>
+                <div class="mock-class-trainer">Анна Петровна</div>
+                <div class="mock-spots">7/15 &middot; <span class="spots-ok">8 мест</span></div>
+              </div>
+            </div>
+            <div class="mock-book-btn">Записаться</div>
+            <div class="mock-class-card-s booked">
+              <div class="mock-time-box">19:00</div>
+              <div class="mock-class-detail">
+                <div class="mock-class-name">Хатха</div>
+                <div class="mock-class-trainer">Мария Иванова</div>
+                <div class="mock-spots">12/15 &middot; <span class="spots-warn">3 места</span></div>
+              </div>
+              <div class="booked-badge">&#x2713; Записана</div>
+            </div>
+            <div class="mock-cancel-btn">Отменить запись</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WF S2: Voting -->
+    <div class="workflow-block reverse">
+      <div class="wf-text">
+        <h3>2. Голосование</h3>
+        <div class="wf-steps">
+          <div class="wf-step"><span class="wf-dot green"></span>Голосования приходят <strong>в Telegram-чат</strong> как обычный опрос</div>
+          <div class="wf-step"><span class="wf-dot green"></span>Можно голосовать прямо в чате или через <strong>Mini App</strong></div>
+          <div class="wf-step"><span class="wf-dot green"></span>Выберите удобные дни и нажмите <strong>Проголосовать</strong></div>
+          <div class="wf-step"><span class="wf-dot green"></span>Если включено списание с баланса — занятие спишется автоматически</div>
+          <div class="wf-step"><span class="wf-dot green"></span>После голосования появятся кнопки оплаты (если требуется)</div>
+          <div class="wf-step"><span class="wf-dot green"></span>При отмене голосования тренером — баланс вернётся</div>
+        </div>
+      </div>
+      <div class="wf-phone">
+        <div class="phone-frame small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-topbar">Голосования</div>
+            <div class="mock-voting-card student-vc">
+              <div class="mock-vc-header">
+                <div class="mock-vc-accent green-accent"></div>
+                <div>
+                  <div class="mock-vc-title">Расписание 17-23 марта</div>
+                  <div class="mock-vc-meta">Утренняя хатха &middot; До 16 марта</div>
+                </div>
+              </div>
+              <div class="mock-vote-options">
+                <div class="mock-vote-opt selected">
+                  <div class="mock-checkbox checked"></div>
+                  <span>Пн 07:30 — Хатха</span>
+                  <span class="vote-count">4</span>
+                </div>
+                <div class="mock-vote-opt">
+                  <div class="mock-checkbox"></div>
+                  <span>Ср 19:00 — ОФП</span>
+                  <span class="vote-count">3</span>
+                </div>
+                <div class="mock-vote-opt selected">
+                  <div class="mock-checkbox checked"></div>
+                  <span>Пт 10:00 — Виньяса</span>
+                  <span class="vote-count">6</span>
+                </div>
+              </div>
+              <div class="mock-vote-btn pulse-anim">Проголосовать (1 занятие)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WF S3: Purchase + Payments -->
+    <div class="workflow-block">
+      <div class="wf-text">
+        <h3>3. Покупка занятий и платежи</h3>
+        <div class="wf-steps">
+          <div class="wf-step"><span class="wf-dot green"></span>Перейдите на <strong>Купить занятия</strong></div>
+          <div class="wf-step"><span class="wf-dot green"></span>Выберите количество: кнопки быстрого выбора (1, 4, 8, 12) или +/-</div>
+          <div class="wf-step"><span class="wf-dot green"></span>Цена: <strong>700 &#8381; за занятие</strong></div>
+          <div class="wf-step"><span class="wf-dot green"></span>Нажмите <strong>Оплатить</strong> — откроется страница T-Bank</div>
+          <div class="wf-step"><span class="wf-dot green"></span>После успешной оплаты баланс пополнится автоматически</div>
+          <div class="wf-step"><span class="wf-dot green"></span>Занятия <strong>не сгорают</strong> — используйте когда удобно</div>
+        </div>
+        <div class="info-box green-box">
+          <strong>В разделе Платежи:</strong> текущий баланс, общая статистика покупок и полная история со статусами (Оплачено, В обработке, Ошибка, Возврат).
+        </div>
+      </div>
+      <div class="wf-phone">
+        <div class="phone-frame small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-topbar">&larr; Купить занятия</div>
+            <div class="mock-purchase">
+              <div class="purchase-counter">
+                <div class="counter-btn">-</div>
+                <div class="counter-num counter-anim">8</div>
+                <div class="counter-btn">+</div>
+              </div>
+              <div class="quick-btns">
+                <span class="qb">1</span>
+                <span class="qb">4</span>
+                <span class="qb active">8</span>
+                <span class="qb">12</span>
+              </div>
+              <div class="price-line">700 &#8381; &times; 8 = <strong>5 600 &#8381;</strong></div>
+              <div class="purchase-info">
+                <div>&#x2705; Занятия не сгорают</div>
+                <div>&#x2744; Можно заморозить на 2 недели</div>
+                <div>&#x1F512; Безопасная оплата через T-Bank</div>
+              </div>
+            </div>
+            <div class="mock-btn-bottom accent-btn">Оплатить 5 600 &#8381;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WF S4: Journal -->
+    <div class="workflow-block reverse">
+      <div class="wf-text">
+        <h3>4. Журнал посещений</h3>
+        <div class="wf-steps">
+          <div class="wf-step"><span class="wf-dot green"></span>Вкладка <strong>Журнал</strong> в нижнем меню</div>
+          <div class="wf-step"><span class="wf-dot green"></span>Список всех посещений с датами и статусами</div>
+          <div class="wf-step"><span class="wf-dot green"></span>Цветовые метки: <span class="inline-badge green-i">Посещено</span> <span class="inline-badge red-i">Неявка</span> <span class="inline-badge gray-i">Отменено</span></div>
+          <div class="wf-step"><span class="wf-dot green"></span>Для каждого занятия видна группа, дата, время и заметки</div>
+        </div>
+      </div>
+      <div class="wf-phone">
+        <div class="phone-frame small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-topbar">Журнал</div>
+            <div class="mock-journal-list">
+              <div class="mock-journal-item">
+                <div class="j-icon green-icon">&#x2713;</div>
+                <div class="j-info">
+                  <div class="j-name">Утренняя хатха</div>
+                  <div class="j-date">понедельник, 10 марта &middot; 07:30</div>
+                </div>
+                <div class="mock-badge green small-badge">Посещено</div>
+              </div>
+              <div class="mock-journal-item">
+                <div class="j-icon green-icon">&#x2713;</div>
+                <div class="j-info">
+                  <div class="j-name">Виньяса-флоу</div>
+                  <div class="j-date">пятница, 7 марта &middot; 10:00</div>
+                </div>
+                <div class="mock-badge green small-badge">Посещено</div>
+              </div>
+              <div class="mock-journal-item">
+                <div class="j-icon red-icon">&#x2717;</div>
+                <div class="j-info">
+                  <div class="j-name">ОФП + растяжка</div>
+                  <div class="j-date">среда, 5 марта &middot; 19:00</div>
+                </div>
+                <div class="mock-badge red small-badge">Неявка</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NAVIGATION MAP ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Карта навигации</h2>
+    <div class="nav-map-grid">
+      <div class="nav-map-col">
+        <div class="nav-map-header trainer-color">Тренер</div>
+        <div class="nav-map-items">
+          <div class="nav-map-item parent">Панель <span class="nav-hint">Статистика, сегодня</span></div>
+          <div class="nav-map-item parent">Группы
+            <div class="nav-map-children">
+              <div class="nav-map-child">Создать группу</div>
+              <div class="nav-map-child">Детали группы</div>
+              <div class="nav-map-child">Редактировать</div>
+              <div class="nav-map-child">Создать голосование</div>
+            </div>
+          </div>
+          <div class="nav-map-item">Голосования <span class="nav-hint">Активные + история</span></div>
+          <div class="nav-map-item">Ученики <span class="nav-hint">Список и балансы</span></div>
+          <div class="nav-map-item">Журнал <span class="nav-hint">Посещения</span></div>
+          <div class="nav-map-item">Платежи <span class="nav-hint">Финансы</span></div>
+        </div>
+      </div>
+      <div class="nav-map-col">
+        <div class="nav-map-header student-color">Ученик</div>
+        <div class="nav-map-items">
+          <div class="nav-map-item">Главная <span class="nav-hint">Баланс, записи</span></div>
+          <div class="nav-map-item">Расписание <span class="nav-hint">Запись на занятия</span></div>
+          <div class="nav-map-item">Голосования <span class="nav-hint">Выбор расписания</span></div>
+          <div class="nav-map-item">Купить занятия <span class="nav-hint">Пакеты, T-Bank</span></div>
+          <div class="nav-map-item">Платежи <span class="nav-hint">Баланс, история</span></div>
+          <div class="nav-map-item">Журнал <span class="nav-hint">Посещения</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TELEGRAM BOT ===== -->
+<section class="section section-dark">
+  <div class="container">
+    <h2 class="section-title">Telegram-бот @Yom23_bot</h2>
+    <p class="section-sub">Бот работает автономно в ваших групповых чатах. Вот его основные команды:</p>
+    <div class="commands-grid">
+      <div class="cmd-card"><code>/start</code><span>Регистрация и приветствие</span></div>
+      <div class="cmd-card"><code>/help</code><span>Список команд</span></div>
+      <div class="cmd-card"><code>/balance</code><span>Текущий баланс занятий</span></div>
+      <div class="cmd-card"><code>/schedule</code><span>Расписание на неделю</span></div>
+      <div class="cmd-card"><code>/vote</code><span>Активные голосования</span></div>
+      <div class="cmd-card"><code>/stats</code><span>Статистика (для тренера)</span></div>
+    </div>
+    <div class="info-box" style="max-width: 600px; margin: 32px auto 0;">
+      <strong>Как подключить бота:</strong><br>
+      1. Создайте группу в Telegram<br>
+      2. Добавьте @Yom23_bot в группу<br>
+      3. Сделайте его администратором<br>
+      4. Вставьте ссылку на чат при создании группы в приложении
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">Yoga<span class="accent">App</span></div>
+      <div class="footer-text">Telegram Mini App для йога-студий</div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
