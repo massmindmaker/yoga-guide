@@ -32,10 +32,10 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:#1a1a
 .phone-frame{position:relative;width:300px;background:var(--dark);border-radius:40px;padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.22),0 0 0 1px rgba(255,255,255,.1) inset;flex-shrink:0;margin-bottom:36px}
 .sec-dark .phone-frame{box-shadow:0 30px 80px rgba(0,0,0,.4),0 0 0 1.5px rgba(255,255,255,.15) inset,0 0 40px rgba(59,206,172,.08)}
 .phone-notch{width:90px;height:5px;background:var(--gray-800);border-radius:10px;margin:0 auto 8px}
-.phone-inner{background:#fff;border-radius:28px;overflow:hidden;position:relative;height:620px}
+.phone-inner{background:#fff;border-radius:28px;overflow:hidden;position:relative}
 
 /* Carousel screens */
-.phone-carousel{position:relative;height:100%}
+.phone-carousel{position:relative;height:620px}
 .screen{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity .5s ease;pointer-events:none;overflow-y:auto;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding-bottom:52px}
 .screen::-webkit-scrollbar{display:none}
 .screen:first-child{opacity:1;pointer-events:auto}
